@@ -1,0 +1,25 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+    <form name="form" ng-submit="submit(form.name, form.project, form.description)">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" ng-model="form.name" placeholder="Task" required>
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Project Name" ng-model="form.project" required>
+        </label>
+        <label class="item item-input">
+          <textarea placeholder="Description" ng-model="form.description" required></textarea>
+        </label>
+        <button type="submit" ng-disabled="!form.name || !form.project || !form.description" class="button button-block button-positive">Submit</button>
+      </div>
+    <form>
+    <div ng-repeat="list in lists">
+      {{list.name}}
+      <br>
+      {{list.project}}
+      <br>
+      {{list.description}}
+    </div>
+  </ion-content>
+</ion-view>
