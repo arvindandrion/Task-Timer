@@ -14,12 +14,17 @@
         <button type="submit" ng-disabled="!form.name || !form.project || !form.description" class="button button-block button-positive">Submit</button>
       </div>
     <form>
-    <div ng-repeat="list in lists">
+
+    <div ng-repeat="list in getTaskList">
+      <a ng-click="removeTask(list.id)" href="">X</a>
+      {{list.id}}
+      <br/>
       {{list.name}}
       <br>
       {{list.project}}
       <br>
       {{list.description}}
+      <hr />
     </div>
   </ion-content>
 </ion-view>

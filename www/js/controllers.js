@@ -1,39 +1,33 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($localStorage, $scope) {
-  $scope.$storage = $localStorage.$default({
+.controller('DashCtrl', function(localDB, $localStorage, $scope) {
+  $scope.storage = $localStorage.$default({
     task : []
   });
-  $scope.getTaskList = $scope.$storage.task;
-  $scope.lists = $localStorage.task;
+  $scope.getTaskList = $scope.storage.task;
 
-
-    var listData = $scope.lists;
-    
-  for (var i = 0; i < listData.length; i++) {
-      console.log(listData[i].id);
-      // if (listData[i].id === parseInt(chatId)) {
-      //   return listData[i];
-      // }
-    }
-    //
-
+  //Submit Data
   $scope.submit = function(name, project, description){
-    var listData = $scope.lists;
-    for (var i = 0; i < listData.length; i++) {
-      console.log(listData[i].id);
-      // if (listData[i].id === parseInt(chatId)) {
-      //   return listData[i];
-      // }
-    }
-    // return null;
+    var taskList =  $scope.getTaskList;
+    var listLength =  parseInt($scope.getTaskList.length) - 1;
 
-    $scope.$storage.task.push({
-      id: name,
+    //check if there is data, else add one and increment.
+    if(listLength < 0){
+      idNum = 1;
+    }else{
+      idNum = taskList[listLength].id;
+      idNum += 1;
+      console.log(idNum);
+    }
+    // Store in data
+    var data = {
+      id: idNum,
       name: name,
       project: project,
       description: description
-    });
+    };
+    // push data
+    localDB.set(data);
   }
 })
 
