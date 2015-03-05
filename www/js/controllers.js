@@ -11,23 +11,19 @@ angular.module('starter.controllers', [])
     var taskList =  $scope.getTaskList;
     var listLength =  parseInt($scope.getTaskList.length) - 1;
 
-    //check if there is data, else add one and increment.
-    if(listLength < 0){
-      idNum = 1;
-    }else{
-      idNum = taskList[listLength].id;
-      idNum += 1;
-      console.log(idNum);
-    }
     // Store in data
     var data = {
-      id: idNum,
       name: name,
       project: project,
       description: description
     };
-    // push data
+    // push data ti local db
     localDB.set(data);
+  }
+
+  $scope.removeTask = function(item){
+    var index = $scope.getTaskList.indexOf(item)
+    $scope.getTaskList.splice(index,1);
   }
 })
 

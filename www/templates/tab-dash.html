@@ -16,9 +16,7 @@
     <form>
 
     <div ng-repeat="list in getTaskList">
-      <a ng-click="removeTask(list.id)" href="">X</a>
-      {{list.id}}
-      <br/>
+      <a ng-click="removeTask(list)" href="">X</a>
       {{list.name}}
       <br>
       {{list.project}}
